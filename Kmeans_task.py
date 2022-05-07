@@ -28,8 +28,6 @@ def InitialCentroids(data, k):
         number_of_unique_centroids = len(unique_centroids)
 
     return np.array(unique_centroids)
-
-
 def EuclideanDistance(matrix1, matrix2):
     """
     Function computes euclidean distance between matrix A and B.
@@ -39,9 +37,7 @@ def EuclideanDistance(matrix1, matrix2):
     result = matrix1 @ matrix2.T
     dst = -2 * result + matrix2_square + matrix1_square
     return np.sqrt(dst)
-
-
-def getClusters(data, centroids, distance_mesuring_method):
+def getClusters(data, centroids):
     """
     Function finds k centroids and assigns each of the point of array data to the closest centroid
     Returns:
@@ -57,8 +53,6 @@ def getClusters(data, centroids, distance_mesuring_method):
         clusters[cluster_id].append(data[i])
 
     return clusters
-
-
 def centroids_covered(previous_centroids, new_centroids, movement_delta):
     """
     Function checks if any of centroids are stand still then centroids were founded
@@ -68,8 +62,6 @@ def centroids_covered(previous_centroids, new_centroids, movement_delta):
     dist_between_old_and_new = EuclideanDistance(previous_centroids, new_centroids)
     centroidsCovered = np.max(dist_between_old_and_new.diagonal()) <= movement_delta
     return centroidsCovered
-
-
 def Kmeans_algorithm(data, k, movement_delta=0):
     """
     Function performs k-means algorithm on a given dataset, finds and returns k centroids
@@ -78,7 +70,7 @@ def Kmeans_algorithm(data, k, movement_delta=0):
     centroidsCovered = False
     while not centroidsCovered:
         previousCentroids = newCentroids
-        clusters = getClusters(data, previousCentroids, EuclideanDistance)
+        clusters = getClusters(data, previousCentroids)
         newCentroids = np.array([np.mean(clusters[key], axis=0, dtype=data.dtype) for key in sorted(clusters.keys())])
         centroidsCovered = centroids_covered(previousCentroids, newCentroids, movement_delta)
     return newCentroids
