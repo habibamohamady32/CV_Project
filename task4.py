@@ -1,7 +1,6 @@
 from scipy import fftpack
 import numpy as np
 from PIL import Image, ImageDraw, ImageOps, ImageEnhance
-#import imageio
 import matplotlib.pyplot as plt
 
 image = Image.open(r"D:\hala\New folder\fET3jT4-detective-conan-wallpaper.jpg")
