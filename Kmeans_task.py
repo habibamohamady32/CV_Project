@@ -24,9 +24,7 @@ def InitialCentroids(data, k):
         new_sample_points_ids = random.sample(range(0, num_of_samples), k - number_of_unique_centroids)
         new_centroids = [tuple(data[id]) for id in new_sample_points_ids]
         unique_centroids = list(set(unique_centroids + new_centroids))
-
         number_of_unique_centroids = len(unique_centroids)
-
     return np.array(unique_centroids)
 def EuclideanDistance(matrix1, matrix2):
     """
@@ -34,7 +32,7 @@ def EuclideanDistance(matrix1, matrix2):
     """
     matrix1_square = np.reshape(np.sum(matrix1 * matrix1, axis=1), (matrix1.shape[0], 1))
     matrix2_square = np.reshape(np.sum(matrix2 * matrix2, axis=1), (1, matrix2.shape[0]))
-    result = matrix1 @ matrix2.T
+    result = matrix1@matrix2.T
     dst = -2 * result + matrix2_square + matrix1_square
     return np.sqrt(dst)
 def getClusters(data, centroids):
