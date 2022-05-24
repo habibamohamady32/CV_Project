@@ -57,6 +57,7 @@ for x in range(inputImage_np.shape[0]):
 finalImg.save("images/Output.jpg")
 #---------------------------BandReject------------------------------#
 
+
 #---------------------------Equalization------------------------------#
 imge = Image.open("Image_before_equalization.jpg")
 
